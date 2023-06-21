@@ -96,8 +96,21 @@ session_start();
      </section>
 
      <!-- START -->
+     <!-- TODO: Apply Style and possibly modify HTML structure -->
      <section id="courseList">
-          
+          <?php
+               $query = "SELECT * FROM course";
+               $results = mysqli_query($con, $query);
+
+               while ($row = $results->fetch_assoc()) {
+          ?>
+                    <div>
+                         <p><?php echo $row["course_name"] ?></p>
+                         <a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a>
+                    </div>
+          <?php
+               }
+          ?>
      </section>
 
      <!-- FOOTER -->
