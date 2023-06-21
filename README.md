@@ -21,6 +21,7 @@ For Student:
 courselist.php
 --------------
 create a table list to show course only view option
+
 viewcourse.php
 -------------
 create a page that get all course info and show to student by identify which education stage it is
