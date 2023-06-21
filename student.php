@@ -105,7 +105,7 @@ session_start();
                          <h3 style="color: white;">
                               <b><?php echo $_SESSION['name']; ?></b>
                          <br>
-                         <a href="login.html" class="section-btn btn btn-default smoothScroll">Start Now!</a>
+                         <a href="courseList.php" class="section-btn btn btn-default smoothScroll">Start Now!</a>
                     </div>
                </div>
             </div>
