@@ -1,3 +1,14 @@
+## Getting started
+Copy all the files into the htdocs/ directory inside the Xampp. (You have installed [xampp](https://www.apachefriends.org/download.html), right?)
+
+Afterward, start the Apache server and MySql inside the Xampp control panel,
+go to phpmyadmin in the browser via clicking the `admin` button beside the MySql,
+and create a database name `preschool_system`. While selecting that database,
+go to `import` tab and select the preschool_system.sql from this repo.
+Remember to disable the foreign key checks while importing the file.
+
+At last, go to `localhost/index.html` with browser of your choice.
+
 # KidsPreschoolLearningSystem
 role: 1 - student
       2 - teacher
@@ -5,26 +16,26 @@ role: 1 - student
 status: 1 - active
         2 - inactive
 
-Lishen's work
-Mainly use course table.
+Li Sheng's work
+Play around with courses table.
 
 For teacher:
 manageCourse.php
 -----------
-create a table list to show course with add edit delete option
-add course into database
-update the course
-delete the course
-find the way can get the embedded youtube video by get the youtube id
+course#index (with edit, delete options)
+course#new
+course#update
+course#delete
+embedded youtube video via youtube id (?)
 
 For Student:
 courselist.php
 --------------
-create a table list to show course only view option
+course#index
 
 viewcourse.php
 -------------
-create a page that get all course info and show to student by identify which education stage it is
+course#show (course info and... education stage?)
 
 Vincent's work:
 mainly use user table.
