@@ -120,6 +120,7 @@ session_start();
                     <!-- TODO: Include HTML and CSS -->
                     <div>
                          <p><?php echo $row["course_name"] ?></p>
+                         <a href="editCourse.php?course_id=<?php echo $row["course_id"] ?>">Edit</a>
                          <a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a>
 
                          <!-- A form that encapsulate the delete button -->
