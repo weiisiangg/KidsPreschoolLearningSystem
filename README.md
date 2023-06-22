@@ -9,39 +9,17 @@ Remember to disable the foreign key checks while importing the file.
 
 At last, go to `localhost/index.html` with browser of your choice.
 
-# KidsPreschoolLearningSystem
-role: 1 - student
-      2 - teacher
+## Model
+There are 4 table inside the database:
+* admin
+* contact
+* course
+* user
 
-status: 1 - active
-        2 - inactive
+For user, there are 2 roles:
+* 1 - student
+* 2 - teacher
 
-Li Sheng's work
-Play around with courses table.
-
-For teacher:
-manageCourse.php
------------
-course#index (with edit, delete options)
-course#new
-course#update
-course#delete
-embedded youtube video via youtube id (?)
-
-For Student:
-courselist.php
---------------
-course#index
-
-viewcourse.php
--------------
-course#show (course info and... education stage?)
-
-Vincent's work:
-mainly use user table.
-manageStudent.php
-----------------
-add student
-delete student
-edit student
-create a table list show all student by filter who is active with edit delete option
+...and 2 statue:
+* 1 - active
+* 2 - inactive
