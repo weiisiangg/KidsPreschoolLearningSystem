@@ -98,6 +98,24 @@ session_start();
      <!-- START -->
      <section id="viewCourse">
           <?php
+               // The update POST message with update flag
+                if (isset($_POST) && isset($_GET["update"])) {
+                    $course_name = $_POST["course-name"];
+                    $course_video = $_POST["course-video"];
+                    $course_description = $_POST["course-description"];
+                    $course_id = $_GET["course_id"];
+                    
+                    $update_query = "UPDATE course
+                                     SET course_name='$course_name',
+                                     course_video = '$course_video',
+                                     course_description = '$course_description'
+                                     WHERE course_id=$course_id;";
+                    
+                    mysqli_query($con, $update_query);
+
+                    // TODO: redirect to other page / show some notification after update?
+                }
+
                 $course_id = $_REQUEST["course_id"];
                 $query = "SELECT * FROM course WHERE course_id = $course_id";
                 $results = mysqli_query($con, $query);
@@ -108,18 +126,18 @@ session_start();
                     $course_description = $row["course_description"];
           ?>
                     <!-- The course update form -->
-                    <form action="editCourse.php" method="post">
+                    <form action="editCourse.php?update=true&&course_id=<?php echo $course_id ?>" method="post">
                     <div class="field">
                         <label>
                             The course name:
-                            <input type="text" name="course-name" id="course-name" value=<?php $course_name ?>>
+                            <input type="text" name="course-name" id="course-name" value="<?php echo $course_name ?>">
                         </label>
                     </div>
 
                     <div class="field">
                         <label>
                             The course video:
-                            <input type="text" name="course-video" id="course-video" value=<?php $course_video ?>>
+                            <input type="text" name="course-video" id="course-video" value=<?php echo $course_video ?>>
                         </label>
                     </div>
 
