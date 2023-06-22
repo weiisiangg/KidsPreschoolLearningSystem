@@ -1,0 +1,4 @@
+Refactor?
+
+* Break common pieces (navbar, user login check, footer, etc...) into partial
+* Unify file name convention (course_new, course_show, course_index) etc...
