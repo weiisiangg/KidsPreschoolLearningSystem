@@ -97,7 +97,36 @@ session_start();
 
      <!-- START -->
      <section id="viewCourse">
+          <?php
+               if (!isset($_REQUEST["course_id"])) {
+          ?>
+                    <!-- TODO: Display warning indicate course_id is missing -->
+                    <p>Warning</p>
+          <?php
+               } else {
+                    $course_id = $_REQUEST["course_id"];
+                    $query = "SELECT * FROM course WHERE course_id = $course_id";
+                    $results = mysqli_query($con, $query);
 
+                    while ($row = $results->fetch_assoc()) {
+          ?>
+                         <!-- TODO: Display the course information at here -->
+                         <div class="course-container">
+                              <div class="course-name">
+                                   <h2><?php echo $row["course_name"] ?></h2>
+                                   <section>
+                                        <?php echo $row["course_description"] ?>
+                                   </section>
+                                   <section>
+                                        <!-- TODO: Embedded youtube video -->
+                                        <?php echo $row["course_video"] ?>
+                                   </section>
+                              </div>
+                         </div>
+          <?php
+                    }
+               }
+          ?>
      </section>
 
      <!-- FOOTER -->
