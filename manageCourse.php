@@ -131,6 +131,9 @@ session_start();
           <?php
                }
           ?>
+
+          <!-- TODO: Include CSS -->
+          <a href="newCourse.php">Create a new course</a>
      </section>
 
      <!-- FOOTER -->
