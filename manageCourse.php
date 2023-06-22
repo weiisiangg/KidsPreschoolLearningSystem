@@ -101,9 +101,35 @@ session_start();
           </div>
      </section>
 
-     <!-- START -->
     <section id="manageCourse">
-        
+          <?php
+               // if there is a post message (with delete flag on)
+               if (isset($_REQUEST["delete"])) {
+                    $course_id = $_REQUEST["course_id"];
+                    $query = "DELETE FROM course WHERE course_id = $course_id";
+
+                    // TODO: Test if it actually delete the course
+                    mysqli_query($con, $query);
+               }
+
+               $query = "SELECT * FROM course";
+               $results = mysqli_query($con, $query);
+
+               while ($row = $results->fetch_assoc()) {
+          ?>
+                    <!-- TODO: Include HTML and CSS -->
+                    <div>
+                         <p><?php echo $row["course_name"] ?></p>
+                         <a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a>
+
+                         <!-- A form that encapsulate the delete button -->
+                         <form action="manageCourse.php?delete=true&&course_id=<?php echo $row["course_id"] ?>" method="post">
+                              <button type="submit">Delete</button>
+                         </form>
+                    </div>
+          <?php
+               }
+          ?>
      </section>
 
      <!-- FOOTER -->
