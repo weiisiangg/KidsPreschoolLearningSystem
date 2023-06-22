@@ -118,7 +118,9 @@ session_start();
                                         <?php echo $row["course_description"] ?>
                                    </section>
                                    <section>
-                                        <!-- TODO: Embedded youtube video -->
+                                   <iframe width="420" height="315"
+                                        src="https://www.youtube.com/embed/<?php echo $row["course_video"] ?>">
+                                   </iframe>
                                         <?php echo $row["course_video"] ?>
                                    </section>
                               </div>
