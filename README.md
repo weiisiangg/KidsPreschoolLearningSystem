@@ -20,6 +20,6 @@ For user, there are 2 roles:
 * 1 - student
 * 2 - teacher
 
-...and 2 statue:
+...and 2 status:
 * 1 - active
 * 2 - inactive
