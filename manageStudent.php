@@ -119,7 +119,7 @@ if (isset($_POST["update"])) {
 
      <section id = "manageStudent">
      <div class="container">
-          <div id="courseList" class="section">
+          <div id="studentList" class="section">
                <div class="section-center">
                     <div class="row">
                     <h1 style="color:black; text-align:top; margin-top: -10px;">Student Lists</h1>
@@ -138,6 +138,7 @@ if (isset($_POST["update"])) {
                               <th>Contact</th>
                               <th>Address</th>
                               <th>Start Date</th>
+                              <th>Action</th>
                          </tr>
                          </thead>
 
