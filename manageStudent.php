@@ -148,7 +148,7 @@ if (isset($_POST["update"])) {
                                    while($row=mysqli_fetch_array($res))
                                    {
                                         echo "<tr>";
-                                        echo "<td>"; echo $i; echo"</td>";
+                                        echo "<td>"; echo $i; $i++; echo"</td>";
                                         echo "<td>"; echo $row["loginID"]; echo"</td>";
                                         echo "<td>"; echo $row["password"]; echo"</td>";
                                         echo "<td>"; echo $row["name"]; echo"</td>";
