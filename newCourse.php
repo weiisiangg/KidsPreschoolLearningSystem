@@ -70,33 +70,42 @@ session_start();
                <!--navbar-->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="student.php" class="smoothScroll">Home</a></li>
+                         <li><a href="teacher.php" class="smoothScroll">Home</a></li>
                          <li><a href="viewprofile.php?profileid=<?php echo $user_id?>" class="smoothScroll">Profile</a></li>
-                         <li><a href="courseList.php" class="smoothScroll">Course</a></li>
+                         <li><a href="manageStudent.php?profileid=<?php echo $user_id?>" class="smoothScroll">Manage Student</a></li>
+                         <li><a href="manageCourse.php" class="smoothScroll">Manage Course</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">   
                           
                          <li class="dropdown">   
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>           
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
                                    <?php if (isset($_SESSION['loginID'])) : ?>
                                    <b><?php echo $_SESSION['loginID']; ?></b>
                                    <?php endif ?>
                               </a> 
                               <ul class="dropdown-menu">
-                                   <li style="margin-top: 10px; margin-bottom: 20px; margin-left: 15px;">Hi, <?php echo $_SESSION['loginID'];?></li>   
+                                   <li style="margin-top: 10px; margin-bottom: 20px; margin-left: 15px;">Hi, <?php  echo $_SESSION['loginID'];?></li>         
                                    <li role="separator" class="divider"></li>
                                    <li><a href ="viewprofile.php?profileid=<?php echo $user_id?>">User Profile</a></li>
-                                   <li><a href="courseList">My course</a></li>
+                                   <li><a href="manageStudent.php?profileid=<?php echo $user_id?>">Manage Student</a></li>
+                                   <li><a href="manageCourse.php">Manage Course</a></li>
                                    <li><a href="logout.php">Log Out</a></li>
                               </ul>
                     </ul>
+               </div>
                </div>
           </div>
      </section>
 
      <!-- START -->
      <section id="viewCourse">
+     <div class="container">
+               <div id="profiledetail" class="section">
+                    <div class="section-center">
+                         <div class="row">
+                         <h6><a href="manageCourse.php">< Back</a></h6>
+                         <h1 style="color:black; text-align:top; margin-top: -10px;">Add Course</h1>
           <?php
                // The update POST message with update flag
                 if (isset($_POST) && isset($_GET["new"])) {
@@ -111,35 +120,44 @@ session_start();
                     $query = "INSERT INTO course (course_id, course_name, course_video, course_description, education_stage, teacher_id, admin_id)
                               VALUES ('$course_id', '$course_name', '$course_video', '$course_description', 'K1', NULL, 1);";
                     
-                    mysqli_query($con, $query);
-
-                    // TODO: redirect to other page / show some notification after create course?
+                    if(mysqli_query($con, $query)){
+                         echo "<script>alert('Course record updated successfully!')</script>";
+                    }else{
+                         echo "Error: " . mysqli_error($con);
+                    }
                 }
           ?>
                 <!-- The course new form -->
-            <form action="newCourse.php?new=true" method="post">
-                <div class="field">
-                    <label>
-                        The course name:
-                        <input type="text" name="course-name" id="course-name">
-                    </label>
-                </div>
+                
+            <form action="newCourse.php" method="post">
+            <table class= "table table-boardered table-hover">
+               <tr>
+                    <td style="font-weight:bold;">The course name:</td>
+                    <td>
+                         <input class="form-control" type="text" name="course-name" id="course-name" placeholder="Enter your course name here.." required>
+                    </td>
+               </tr>
 
-                <div class="field">
-                    <label>
-                        The course video:
-                        <input type="text" name="course-video" id="course-video">
-                    </label>
-                </div>
+               <tr>
+                    <td style="font-weight:bold;">The course video:</td>
+                    <td>
+                         <input class="form-control" type="text" name="course-video" id="course-video" placeholder="Enter your youtube video ID here.." required>
+                    </td>
+               </tr>
 
-                <div class="field">
-                    <label>
-                        The course description:
-                        <textarea name="course-description" cols="30" rows="10"></textarea>
-                    </label>
-                </div>
+               <tr>
+                    <td style="font-weight:bold;">The course description:</td>
+                    <td>
+                    <textarea name="course-description" cols="110" rows="10" required placeholder="Enter your description here.." style="resize:none;"></textarea>
+                    </td>
+               </tr>
+          </table>
 
-                <button type="submit">Create new course</button>
+               <tr align="center">
+               <td colspan="6">
+                    <button type="submit" class="btn btn-primary" style="width:250px;margin-left:35%;margin-bottom:3%;background: palevioletred;border: 1px solid transparent;cursor: pointer;font-size: 20px;" onMouseOver="this.style.background='rgba(253,187,45,1)'" 
+                              onMouseOut="this.style.background='palevioletred'">Create new course</button>
+               </td>
             </form>
      </section>
 
