@@ -111,18 +111,17 @@ session_start();
                     while ($row = $results->fetch_assoc()) {
           ?>
                          <!-- TODO: Display the course information at here -->
-                         <div class="course-container">
-                              <div class="course-name">
-                                   <h2><?php echo $row["course_name"] ?></h2>
-                                   <section>
-                                        <?php echo $row["course_description"] ?>
-                                   </section>
-                                   <section>
-                                   <iframe width="420" height="315"
-                                        src="https://www.youtube.com/embed/<?php echo $row["course_video"] ?>">
-                                   </iframe>
-                                        <?php echo $row["course_video"] ?>
-                                   </section>
+                         <div class="container">
+                              <div class="courseDetail">
+                                   <div id="profiledetail" class="section">
+                                        <div class="section-center">
+                                        <h1 style="color:black; text-align:top; margin-top: -10px; padding-bottom: 2px;"><?php echo $row["course_name"] ?></h1>
+                                             <iframe width="942" height="530" 
+                                                  src="https://www.youtube.com/embed/<?php echo $row["course_video"] ?>" title="<?php echo $row["course_name"] ?>" alt="<?php echo $row["course_name"] ?>">
+                                             </iframe>
+                                             <h4><?php echo $row["course_description"] ?><h3>
+                                        </div>
+                                   </div>
                               </div>
                          </div>
           <?php
