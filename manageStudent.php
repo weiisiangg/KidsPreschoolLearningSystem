@@ -7,6 +7,20 @@ session_start();
      if(!isset($_SESSION['loginID'])){
           header("Location: login.php");
      }
+
+     $user_id='';
+     $loginID = '';
+
+     if(isset($_SESSION['loginID'])){
+          $login_id = $_SESSION['loginID'] ;
+          $user_id = $_SESSION['user_id'] ;
+          $name = $_SESSION['name'];
+          $role = $_SESSION['role'];
+          echo $_SESSION['user_id'];
+     }else{
+          echo "Session not set"; 
+     }
+     
 function connect(){
     $con = mysqli_connect("localhost", "root", "", "preschool_system");
     if(mysqli_connect_errno()){
@@ -106,7 +120,7 @@ if (isset($_POST["update"])) {
                               <ul class="dropdown-menu">
                                    <li style="margin-top: 10px; margin-bottom: 20px; margin-left: 15px;">Hi, <?php  echo $_SESSION['loginID'];?></li>         
                                    <li role="separator" class="divider"></li>
-                                   <li><a href ="viewprofile.php?profileid=<?php echo $user_id?>">User Profile</a></li>
+                                   <li><a href="viewprofile.php?profileid=<?php echo $user_id?>">User Profile</a></li>
                                    <li><a href="manageStudent.php?profileid=<?php echo $user_id?>">Manage Student</a></li>
                                    <li><a href="manageCourse.php">Manage Course</a></li>
                                    <li><a href="logout.php">Log Out</a></li>
