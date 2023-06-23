@@ -144,9 +144,9 @@ session_start();
                          <?php
                               $query = "SELECT * FROM course";
                               $results = mysqli_query($con, $query);
+                              $ordinal = 1;
                          
                               while ($row = $results->fetch_assoc()) {
-                                   $ordinal = 1;
                                    echo "<tr>";
                                    echo "<td>"; echo $ordinal; $ordinal++; echo"</td>";
                                    echo "<td>"; echo $row["course_name"]; echo"</td>";
