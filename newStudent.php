@@ -44,8 +44,9 @@ session_start();
         $sdate = isset($_POST['sdate']) ? $_POST['sdate'] : '';
         $role = isset($_POST['role']) ? $_POST['role'] : '';
         $status = isset($_POST['status']) ? $_POST['status'] : '';
+        $createdBy = $_SESSION['user_id'];
     
-        $query = "INSERT INTO user (loginID, password, name, dob, education_stage, parentName, email, contact, address, startDate, role, status) VALUES ('$loginid', '$pwd', '$name', '$date', '$edustage', '$pname', '$email', '$contact', '$address', '$sdate', '$role', $status)";
+        $query = "INSERT INTO user (loginID, password, name, dob, education_stage, parentName, email, contact, address, startDate, role, status, createdBy) VALUES ('$loginid', '$pwd', '$name', '$date', '$edustage', '$pname', '$email', '$contact', '$address', '$sdate', '$role', '$status', '$createdBy')";
     
     
         if(mysqli_query($link, $query)) {
