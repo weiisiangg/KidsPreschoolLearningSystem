@@ -29,7 +29,6 @@ if (isset($_POST["insert"])) {
     $address = isset($_POST['address']) ? $_POST['address'] : '';
     $sdate = isset($_POST['sdate']) ? $_POST['sdate'] : '';
     $role = isset($_POST['role']) ? $_POST['role'] : '';
-    
 
     $query = "INSERT INTO user (loginID, password, name, dob, education_stage, parentName, email, contact, address, startDate, role) VALUES ('$loginid', '$pwd', '$name', '$date', '$edustage', '$pname', '$email', '$contact', '$address', '$sdate', '$role')";
 
@@ -53,10 +52,11 @@ if (isset($_POST["update"])) {
     $address = isset($_POST['address']) ? $_POST['address'] : '';
     $sdate = isset($_POST['sdate']) ? $_POST['sdate'] : '';
     $role = isset($_POST['role']) ? $_POST['role'] : '';
+    $status = isset($_GET['status']) ? '2' : '1';
     
 
-    $query = "UPDATE user SET password = '$pwd', name = '$name', dob = '$date', education_stage = '$edustage', parentName = '$pname', email = '$email', contact = '$contact', address = '$address', startDate = '$sdate', role = '$role' WHERE loginID = '$loginid'";
-
+    $query = "UPDATE user SET password = '$pwd', name = '$name', dob = '$date', education_stage = '$edustage', parentName = '$pname', email = '$email', contact = '$contact', address = '$address', startDate = '$sdate', role = '$role', status = '$status' WHERE loginID = '$loginid'";
+     echo "$query";
     if(mysqli_query($link, $query)) {
         echo "Record updated successfully.";
     } else {
@@ -180,6 +180,22 @@ if (isset($_POST["update"])) {
             echo "<td>";
             $id = htmlspecialchars($row["loginID"] ?? ""); // Sanitize the value and provide a default empty string if it's not set
             echo '<a href="edit.php?id=' . $row["loginID"] . '"><button type="button" class="btn btn-success">Edit</button></a>';
+            echo '<form action="manageStudent.php?status=2" method="post">';
+            echo '<input type="text" id="loginID" name="loginID" value=' . $row["loginID"] . ' style="display:none;">';
+            echo '<input type="text" id="password" name="password" value=' . $row["password"] . ' style="display:none;">';
+            echo '<input type="text" id="name" name="name" value=' . $row["name"] . ' style="display:none;">';
+            echo '<input type="text" id="dob" name="dob" value=' . $row["dob"] . ' style="display:none;">';
+            echo '<input type="text" id="education_stage" name="education_stage" value=' . $row["education_stage"] . ' style="display:none;">';
+            echo '<input type="text" id="parentName" name="parentName" value=' . $row["parentName"] . ' style="display:none;">';
+            echo '<input type="text" id="email" name="email" value=' . $row["email"] . ' style="display:none;">';
+            echo '<input type="text" id="contact" name="contact" value=' . $row["contact"] . ' style="display:none;">';
+            echo '<input type="text" id="address" name="address" value=' . $row["address"] . ' style="display:none;">';
+            echo '<input type="text" id="startDate" name="startDate" value=' . $row["startDate"] . ' style="display:none;">';
+            echo '<input type="text" id="role" name="role" value=' . $row["role"] . ' style="display:none;">';
+            echo '<input type="text" id="status" name="status" value="2" style="display:none;">';
+            echo '<input type="text" id="update" name="update" value="tuna" style="display:none;">';
+            echo '<button type="submit">Delete</button>';
+            echo '</form>';
             echo "</td>";
             echo "</tr>";
         }
