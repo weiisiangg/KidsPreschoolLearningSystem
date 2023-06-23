@@ -486,8 +486,7 @@
 -----------------------------------------*/
 
 #contact {
-  /* FIXME: Bug or feature? */
-  /* background: linear-gradient(0deg, palevioletred 38%, rgba(253,187,45,1) 100%); */
+  background: linear-gradient(0deg, palevioletred 38%, rgba(253,187,45,1) 100%); 
   height: auto;
   max-width: 100%;
   margin-top: 2%;
