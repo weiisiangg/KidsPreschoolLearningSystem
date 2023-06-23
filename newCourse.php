@@ -107,18 +107,19 @@ session_start();
                          <h6><a href="manageCourse.php">< Back</a></h6>
                          <h1 style="color:black; text-align:top; margin-top: -10px;">Add Course</h1>
           <?php
-               // The update POST message with update flag
+               // The update POST message with create course flag
                 if (isset($_POST) && isset($_GET["new"])) {
                     $course_name = $_POST["course-name"];
                     $course_video = $_POST["course-video"];
                     $course_description = $_POST["course-description"];
 
+                    // A random number.
+                    $random_offset = 10;
                     // Calculate course_id based on row amount
-                    $course_id = mysqli_query($con, "SELECT COUNT(*) as amount FROM course;")->fetch_assoc()["amount"] + 1;
+                    $course_id = mysqli_query($con, "SELECT COUNT(*) as amount FROM course;")->fetch_assoc()["amount"] + $random_offset;
                     
-                    // TODO: Check if the query work as expected
                     $query = "INSERT INTO course (course_id, course_name, course_video, course_description, education_stage, teacher_id, admin_id)
-                              VALUES ('$course_id', '$course_name', '$course_video', '$course_description', 'K1', NULL, 1);";
+                              VALUES ('$course_id', '$course_name', '$course_video', '$course_description', 'K1', NULL, NULL);";
                     
                     if(mysqli_query($con, $query)){
                          echo "<script>alert('Course record updated successfully!')</script>";
@@ -129,7 +130,7 @@ session_start();
           ?>
                 <!-- The course new form -->
                 
-            <form action="newCourse.php" method="post">
+            <form action="newCourse.php?new=true" method="post">
             <table class= "table table-boardered table-hover">
                <tr>
                     <td style="font-weight:bold;">The course name:</td>
