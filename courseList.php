@@ -98,19 +98,31 @@ session_start();
      <!-- START -->
      <!-- TODO: Apply Style and possibly modify HTML structure -->
      <section id="courseList">
-          <?php
-               $query = "SELECT * FROM course";
-               $results = mysqli_query($con, $query);
+     <div class="container">
+          <div id="courseList" class="section">
+               <div class="section-center">
+                    <div class="row">
+                         <h1 style="color:black; text-align:top; margin-top: -10px;">My Course</h1>
+                         <?php
+                              $query = "SELECT * FROM course";
+                              $results = mysqli_query($con, $query);
 
-               while ($row = $results->fetch_assoc()) {
-          ?>
-                    <div>
-                         <p><?php echo $row["course_name"] ?></p>
-                         <a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a>
-                    </div>
-          <?php
-               }
-          ?>
+                              while ($row = $results->fetch_assoc()) {
+                         ?>
+                         <div>
+                              <table class= "table table-boardered table-hover">
+                                   <tr>     
+                                   <td><?php echo $row["course_name"] ?></td>
+                                   <td><a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a></td>
+                                   </tr>     
+                              </table>
+                         </div>
+                         <?php
+                              }
+                         ?>
+               </div>
+               </div>
+          </div>
      </section>
 
      <!-- FOOTER -->
