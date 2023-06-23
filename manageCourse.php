@@ -24,7 +24,31 @@ session_start();
           echo "Session not set"; 
      }
 
+     function connect(){
+          $con = mysqli_connect("localhost", "root", "", "preschool_system");
+          if(mysqli_connect_errno()){
+              echo "Connection Fail" . mysqli_connect_error();
+          }
+          return $con;
+      }
+      
+      $link = connect();
+
+     // if there is a post message (with delete flag on)
+     if (isset($_REQUEST["delete"])) {
+          $course_id = $_REQUEST["course_id"];
+          $query = "DELETE FROM course WHERE course_id = $course_id";
+
+          // TODO: Test if it actually delete the course
+          mysqli_query($con, $query);
+     }
+
+     $query = "SELECT * FROM course";
+     $results = mysqli_query($con, $query);
+
+     while ($row = $results->fetch_assoc()) {
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -102,39 +126,59 @@ session_start();
      </section>
 
     <section id="manageCourse">
-          <?php
-               // if there is a post message (with delete flag on)
-               if (isset($_REQUEST["delete"])) {
-                    $course_id = $_REQUEST["course_id"];
-                    $query = "DELETE FROM course WHERE course_id = $course_id";
+     <div class="container">
+          <div id="courseList" class="section">
+               <div class="section-center">
+                    <div class="row">
+                    <h1 style="color:black; text-align:top; margin-top: -10px;">Course Lists</h1>
+                    <table class= "table table-boardered table-hover"> 
+                         <thead>
+                         <tr><br><br>
+                              <th>No.</th>
+                              <th>Course Name</th>
+                              <th>Course Video</th>
+                              <th>Course Description</th>
+                              <th>Education Stage</th>
+                              <th>Created by</th>
+                         </tr>
+                         </thead>
 
-                    // TODO: Test if it actually delete the course
-                    mysqli_query($con, $query);
-               }
+                         <tbody>
+                         <?php
+                          $i = 1;
+                          $res=mysqli_query($link,"select * from course");
+                          while($row=mysqli_fetch_array($res))
+                          {
+                               echo "<tr>";
+                               echo "<td>"; echo $i; $i++; echo"</td>";
+                               echo "<td>"; echo $row["course_name"]; echo"</td>";
+                               echo "<td>"; echo $row["course_video"]; echo"</td>";
+                               echo "<td>"; echo $row["course_description"]; echo"</td>";
+                               echo "<td>"; echo $row["education_stage"]; echo"</td>";
+                               echo "<td>"; echo $row["teacher_id"]; echo"</td>";
+                          }
+                         ?>
+                         <td><a href="editCourse.php?course_id=<?php echo $row["course_id"] ?>" style="color:black;"><button type="button">Edit</button></a></td>
+                         <td><a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>" style="color:black;"><button type="button">View</button></a></td>
+                         <td><form action="manageCourse.php?delete=true&&course_id=<?php echo $row["course_id"] ?>" method="post">
+                         <button type="submit">Delete</button>
+                         </form></td>
+                         </tbody>
+                         </table>
+         
 
-               $query = "SELECT * FROM course";
-               $results = mysqli_query($con, $query);
-
-               while ($row = $results->fetch_assoc()) {
-          ?>
-                    <!-- TODO: Include HTML and CSS -->
-                    <div>
-                         <p><?php echo $row["course_name"] ?></p>
-                         <a href="editCourse.php?course_id=<?php echo $row["course_id"] ?>">Edit</a>
-                         <a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a>
-
-                         <!-- A form that encapsulate the delete button -->
-                         <form action="manageCourse.php?delete=true&&course_id=<?php echo $row["course_id"] ?>" method="post">
-                              <button type="submit">Delete</button>
-                         </form>
+                    <!-- TODO: Include CSS -->
+                         <input type="button" class="button-active" style="width:250px; margin-left:35%; margin-bottom:3%; border-radius:20px; border: 1px solid transparent;
+                              background: palevioletred; color: #ffffff; text-transform: capitalize; cursor: pointer; font-size: 20px;" onMouseOver="this.style.background='rgba(253,187,45,1)'" 
+                              onMouseOut="this.style.background='palevioletred'" onclick="location.href='newCourse.php'" value="Create a new course">     
                     </div>
-          <?php
-               }
-          ?>
-
-          <!-- TODO: Include CSS -->
-          <a href="newCourse.php">Create a new course</a>
+               </div>
+          </div>
+     </div>
      </section>
+     <?php
+          }
+     ?>
 
      <!-- FOOTER -->
      <footer id="footer">
@@ -188,8 +232,8 @@ session_start();
                     </div>     
                </div>
           </div>
+     </div>
      </footer>
-
 
      <!-- SCRIPTS -->
      <script src="js/jquery.js"></script>
