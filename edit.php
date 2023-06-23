@@ -198,7 +198,7 @@ $row = mysqli_fetch_array($result);
 
                                 <div class="form-group">
                                   <label for="contact">Contact:</label>
-                                  <input type="text" class="form-control" id="contact" name="contact" style="background: #ffffff" value="<?php echo $row['contact']; ?>" required>
+                                  <input type="text" class="form-control" id="contact" name="contact" style="background: #ffffff; margin-top: -2px;" value="<?php echo $row['contact']; ?>" required>
                                 </div>
 
                                 <div class="form-group">
