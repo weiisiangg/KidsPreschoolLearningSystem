@@ -1,4 +1,5 @@
-Refactor?
+Unfixed bug
 
-* Break common pieces (navbar, user login check, footer, etc...) into partial
-* Unify file name convention (course_new, course_show, course_index) etc...
+Location: manageCourse.php
+
+* When there is no course, the table will break (render under the footer)
