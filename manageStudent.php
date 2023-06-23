@@ -7,23 +7,62 @@ session_start();
      if(!isset($_SESSION['loginID'])){
           header("Location: login.php");
      }
+function connect(){
+    $con = mysqli_connect("localhost", "root", "", "preschool_system");
+    if(mysqli_connect_errno()){
+        echo "Connection Fail" . mysqli_connect_error();
+    }
+    return $con;
+}
 
-     // session_start();
+$link = connect();
 
-     $user_id='';
-     $loginID = '';
-     $name = '';
+if (isset($_POST["insert"])) {
+    $loginid = isset($_POST['loginID']) ? $_POST['loginID'] : '';
+    $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : '';
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $date = isset($_POST['date']) ? $_POST['date'] : '';
+    $edustage = isset($_POST['edustage']) ? $_POST['edustage'] : '';
+    $pname = isset($_POST['pname']) ? $_POST['pname'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $contact = isset($_POST['contact']) ? $_POST['contact'] : '';
+    $address = isset($_POST['address']) ? $_POST['address'] : '';
+    $sdate = isset($_POST['sdate']) ? $_POST['sdate'] : '';
+    $role = isset($_POST['role']) ? $_POST['role'] : '';
+    
 
-     if(isset($_SESSION['loginID'])){
-          $loginID = $_SESSION['loginID'] ;
-          $user_id = $_SESSION['user_id'] ;
-          $name = $_SESSION['name'];
-          $role = $_SESSION['role'];
-          echo $_SESSION['user_id'];
-     }else{
-          echo "Session not set"; 
-     }
+    $query = "INSERT INTO user (loginID, password, name, dob, education_stage, parentName, email, contact, address, startDate, role) VALUES ('$loginid', '$pwd', '$name', '$date', '$edustage', '$pname', '$email', '$contact', '$address', '$sdate', '$role')";
 
+
+    if(mysqli_query($link, $query)) {
+        echo "Record inserted successfully.";
+    } else {
+        echo "Error: " . mysqli_error($link);
+    }
+}
+
+if (isset($_POST["update"])) {
+    $loginid = isset($_POST['loginID']) ? $_POST['loginID'] : '';
+    $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : '';
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $date = isset($_POST['date']) ? $_POST['date'] : '';
+    $edustage = isset($_POST['edustage']) ? $_POST['edustage'] : '';
+    $pname = isset($_POST['pname']) ? $_POST['pname'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $contact = isset($_POST['contact']) ? $_POST['contact'] : '';
+    $address = isset($_POST['address']) ? $_POST['address'] : '';
+    $sdate = isset($_POST['sdate']) ? $_POST['sdate'] : '';
+    $role = isset($_POST['role']) ? $_POST['role'] : '';
+    
+
+    $query = "UPDATE user SET password = '$pwd', name = '$name', dob = '$date', education_stage = '$edustage', parentName = '$pname', email = '$email', contact = '$contact', address = '$address', startDate = '$sdate', role = '$role' WHERE loginID = '$loginid'";
+
+    if(mysqli_query($link, $query)) {
+        echo "Record updated successfully.";
+    } else {
+        echo "Error: " . mysqli_error($link);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -100,11 +139,111 @@ session_start();
 
           </div>
      </section>
-
-     <!-- START -->
-    <section id="manageStudent">
-       
+     <section>
+     <h1 style="color:black; text-align:top; margin-top: -10px;">Student Lists</h1>
+<div id="studentListContainer">   
+<div  class="col-lg-12">
+<!-- <table class="table table-bordered"> -->
+     <table>
+    <thead>
+      <tr><br><br>
+        <th>Login ID</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Dob</th>
+        <th>Education Stage</th>
+        <th>Parent Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Address</th>
+        <th>Start Date</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php
+        $res=mysqli_query($link,"select * from user WHERE role = 1");
+        while($row=mysqli_fetch_array($res))
+        {
+            echo "<tr>";
+            echo "<td>"; echo $row["loginID"]; echo"</td>";
+            echo "<td>"; echo $row["password"]; echo"</td>";
+            echo "<td>"; echo $row["name"]; echo"</td>";
+            echo "<td>"; echo $row["dob"]; echo"</td>";
+            echo "<td>"; echo $row["education_stage"]; echo"</td>";
+            echo "<td>"; echo $row["parentName"]; echo"</td>";
+            echo "<td>"; echo $row["email"]; echo"</td>";
+            echo "<td>"; echo $row["contact"]; echo"</td>";
+            echo "<td>"; echo $row["address"]; echo"</td>";
+            echo "<td>"; echo $row["startDate"]; echo"</td>";
+            echo "<td>"; echo $row["role"]; echo"</td>";
+            echo "<td>";
+            $id = htmlspecialchars($row["loginID"] ?? ""); // Sanitize the value and provide a default empty string if it's not set
+            echo '<a href="edit.php?id=' . $row["loginID"] . '"><button type="button" class="btn btn-success">Edit</button></a>';
+            echo "</td>";
+            echo "</tr>";
+        }
+        ?>
+</tbody>
+  </table>
+</div>
+     </div>
     </section>
+    
+<!-- <div class="container"> -->
+        <div>
+  <h2>Preschool System</h2>
+  <form action="" method="post">
+    <div class="form-group">
+      <label for="loginID">Login ID:</label>
+      <input type="text" class="form-control" id="loginID" placeholder="Enter Login ID" name="loginID" required>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="date">Date of Birth:</label>
+      <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <div class="form-group">
+      <label for="edustage">Education Stage:</label>
+      <select class="form-control" id="edustage" name="edustage">
+        <option value="Pre-K">Pre-K</option>
+        <option value="Kindergarten">Kindergarten</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="pname">Parent Name:</label>
+      <input type="text" class="form-control" id="pname" placeholder="Enter parent name" name="pname" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="contact">Contact:</label>
+      <input type="tel" name="contact">
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" required>
+    </div>
+    <div class="form-group">
+      <label for="sdate">Start Date:</label>
+      <input type="date" class="form-control" id="sdate" name="sdate" required>
+    </div>
+       <div class="form-group">
+        <label for="role">Role:</label>
+        <input type="text" class="form-control" id="role" name="role" value="1" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary" name="insert">Add Student</button><br><br>
+  </form>
+</div>
 
      <!-- FOOTER -->
      <footer id="footer">
@@ -167,5 +306,7 @@ session_start();
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
      
+</body>
+</html>
 </body>
 </html>
