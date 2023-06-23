@@ -43,8 +43,9 @@ session_start();
         $address = isset($_POST['address']) ? $_POST['address'] : '';
         $sdate = isset($_POST['sdate']) ? $_POST['sdate'] : '';
         $role = isset($_POST['role']) ? $_POST['role'] : '';
+        $status = isset($_POST['status']) ? $_POST['status'] : '';
     
-        $query = "INSERT INTO user (loginID, password, name, dob, education_stage, parentName, email, contact, address, startDate, role) VALUES ('$loginid', '$pwd', '$name', '$date', '$edustage', '$pname', '$email', '$contact', '$address', '$sdate', '$role')";
+        $query = "INSERT INTO user (loginID, password, name, dob, education_stage, parentName, email, contact, address, startDate, role, status) VALUES ('$loginid', '$pwd', '$name', '$date', '$edustage', '$pname', '$email', '$contact', '$address', '$sdate', '$role', $status)";
     
     
         if(mysqli_query($link, $query)) {
@@ -198,7 +199,13 @@ session_start();
                             <input type="text" class="form-control" id="role" name="role" value="1" readonly hidden>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" name="insert">Add Student</button><br><br>
+                        <div class="form-group" hidden>
+                            <label for="status" hidden>Status:</label>
+                            <input type="text" class="form-control" id="status" name="status" value="1" readonly hidden>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" name="insert" style="width:250px;margin-left:35%;margin-bottom:3%;background: palevioletred;border: 1px solid transparent;cursor: pointer;font-size: 20px;" onMouseOver="this.style.background='rgba(253,187,45,1)'" 
+                              onMouseOut="this.style.background='palevioletred'">Add Student</button><br><br>
                     </form>
                 </div>
             </div>
