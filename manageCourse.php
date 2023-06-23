@@ -24,15 +24,16 @@ session_start();
           echo "Session not set"; 
      }
 
-     function connect(){
-          $con = mysqli_connect("localhost", "root", "", "preschool_system");
-          if(mysqli_connect_errno()){
-              echo "Connection Fail" . mysqli_connect_error();
-          }
-          return $con;
-      }
+     // TODO: Remove? (Already defined inside conn.php)
+     // function connect(){
+     //      $con = mysqli_connect("localhost", "root", "", "preschool_system");
+     //      if(mysqli_connect_errno()){
+     //          echo "Connection Fail" . mysqli_connect_error();
+     //      }
+     //      return $con;
+     //  }
       
-      $link = connect();
+     //  $link = connect();
 
      // if there is a post message (with delete flag on)
      if (isset($_REQUEST["delete"])) {
@@ -42,11 +43,6 @@ session_start();
           // TODO: Test if it actually delete the course
           mysqli_query($con, $query);
      }
-
-     $query = "SELECT * FROM course";
-     $results = mysqli_query($con, $query);
-
-     while ($row = $results->fetch_assoc()) {
 ?>
 
 
@@ -146,24 +142,27 @@ session_start();
 
                          <tbody>
                          <?php
-                          $i = 1;
-                          $res=mysqli_query($link,"select * from course");
-                          while($row=mysqli_fetch_array($res))
-                          {
-                               echo "<tr>";
-                               echo "<td>"; echo $i; $i++; echo"</td>";
-                               echo "<td>"; echo $row["course_name"]; echo"</td>";
-                               echo "<td>"; echo $row["course_video"]; echo"</td>";
-                               echo "<td>"; echo $row["course_description"]; echo"</td>";
-                               echo "<td>"; echo $row["education_stage"]; echo"</td>";
-                               echo "<td>"; echo $row["teacher_id"]; echo"</td>";
-                          }
+                              $query = "SELECT * FROM course";
+                              $results = mysqli_query($con, $query);
+                         
+                              while ($row = $results->fetch_assoc()) {
+                                   $ordinal = 1;
+                                   echo "<tr>";
+                                   echo "<td>"; echo $ordinal; $ordinal++; echo"</td>";
+                                   echo "<td>"; echo $row["course_name"]; echo"</td>";
+                                   echo "<td>"; echo $row["course_video"]; echo"</td>";
+                                   echo "<td>"; echo $row["course_description"]; echo"</td>";
+                                   echo "<td>"; echo $row["education_stage"]; echo"</td>";
+                                   echo "<td>"; echo $row["teacher_id"]; echo"</td>";
                          ?>
                          <td><a href="editCourse.php?course_id=<?php echo $row["course_id"] ?>" style="color:black;"><button type="button">Edit</button></a></td>
                          <td><a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>" style="color:black;"><button type="button">View</button></a></td>
                          <td><form action="manageCourse.php?delete=true&&course_id=<?php echo $row["course_id"] ?>" method="post">
                          <button type="submit">Delete</button>
-                         </form></td>
+                         </form></td></tr>
+                         <?php
+                              }
+                         ?>
                          </tbody>
                          </table>
          
@@ -177,9 +176,6 @@ session_start();
           </div>
      </div>
      </section>
-     <?php
-          }
-     ?>
 
      <!-- FOOTER -->
      <footer id="footer">
