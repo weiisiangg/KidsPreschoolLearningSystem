@@ -20,7 +20,7 @@ session_start();
      }else{
           echo "Session not set"; 
      }
-     
+
 function connect(){
     $con = mysqli_connect("localhost", "root", "", "preschool_system");
     if(mysqli_connect_errno()){
@@ -52,6 +52,30 @@ if (isset($_POST["update"])) {
         echo "Record updated successfully.";
     } else {
         echo "Error: " . mysqli_error($link);
+    }
+}
+
+//DELETE
+if(isset($_GET['delete']))
+{
+    $id2 =$_GET['delete'];
+    $delete_Query = "UPDATE user SET status = '2' WHERE User_ID = $id2";
+    try{
+        $delete_Result = mysqli_query($con, $delete_Query);
+        
+        if($delete_Result)
+        {
+            if(mysqli_affected_rows($con) > 0)
+            {
+
+               echo "<script>alert('Profile record delete successfully!')</script>";
+                
+            }else{
+                echo 'Data Not Deleted';
+            }
+        }
+    } catch (Exception $ex) {
+        echo 'Error Delete '.$ex->getMessage();
     }
 }
 ?>
@@ -159,7 +183,7 @@ if (isset($_POST["update"])) {
                          <tbody>
                               <?php
                                    $i = 1;
-                                   $res=mysqli_query($link,"select * from user WHERE role = 1");
+                                   $res=mysqli_query($link,"select * from user WHERE role = 1 and status = 1");
                                    while($row=mysqli_fetch_array($res))
                                    {
                                         echo "<tr>";
@@ -191,12 +215,13 @@ if (isset($_POST["update"])) {
                                         echo '<input type="text" hidden id="role" name="role" value=' . $row["role"] . ' style="display:none; ">';
                                         echo '<input type="text" hidden id="status" name="status" value="2" style="display:none; ">';
                                         echo '<input type="text" id="update" name="update" value="tuna" style="display:none; ">';
-                                        echo '<button type="submit"  class="btn btn-danger">Delete</button>';
                                         echo '</form>';
-                                        echo "</td>";
-                                        echo "</tr>";
-                                   }
+                                   
                               ?>
+                                   <a href="manageStudent.php?delete=<?php echo $row["user_id"]?>"class="btn btn-danger">delete</a>
+                              <?php 
+                         echo "</td>";
+                         echo "</tr>";}?>
                          </tbody>
                     </table>
                     </div>
