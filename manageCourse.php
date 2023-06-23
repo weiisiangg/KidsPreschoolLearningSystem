@@ -140,6 +140,7 @@ session_start();
                               <th>Course Description</th>
                               <th>Education Stage</th>
                               <th>Created by</th>
+                              <th>Action</th>
                          </tr>
                          </thead>
 
