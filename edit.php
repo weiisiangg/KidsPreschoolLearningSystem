@@ -155,7 +155,7 @@ $row = mysqli_fetch_array($result);
                          <div class="row">
                           <h6><a href="manageStudent.php?profileid=<?php echo $user_id?>">< Back</a></h6>
                               <h1 style="color:black; text-align:top; margin-top: -10px;">Edit User</h1>
-                              <form action="" method="post" autocomplete="no" id = "updateForm">
+                              <form action="" method="post" autocomplete="off" id = "updateForm">
                               <!-- Display the fetched record in an editable form -->
                                 
                               <div class="form-group">
