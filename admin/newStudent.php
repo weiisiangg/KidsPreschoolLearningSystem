@@ -118,7 +118,7 @@ function connect()
                     <strong class="card-title">Add Student</strong>
                 </div>
                 <div class="card-body">
-                <form action="newTeacher.php" method="post" autocomplete="on"> 
+                <form action="newStudent.php" method="post" autocomplete="on"> 
 
                     <table border="1" class="table table-bordered mg-b-0">
                             
