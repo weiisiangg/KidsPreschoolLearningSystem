@@ -51,7 +51,7 @@ function connect()
 <html class="no-js" lang="">
 <head>
    
-    <title>Add Teacher</title>
+    <title>Add Course</title>
    
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
