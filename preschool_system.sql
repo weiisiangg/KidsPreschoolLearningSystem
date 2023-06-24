@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 08:09 AM
+-- Generation Time: Jun 24, 2023 at 02:34 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -99,7 +99,8 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_name`, `course_video`, `course_description`, `education_stage`, `teacher_id`, `admin_id`) VALUES
-(2, 'Five Little Ducks', 'pZw9veQ76fo', 'Five Little Ducks, The simplest baby song!', 'K1', NULL, 1);
+(1, 'Baby Shark', 'x5Udg77RMeY', 'baby shark', 'K1', NULL, NULL),
+(6, 'ABC', 'ezmsrB59mj8', 'Learn ABC with Song', 'Pre-K', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -130,8 +131,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `loginID`, `password`, `name`, `dob`, `education_stage`, `parentName`, `email`, `contact`, `address`, `startDate`, `role`, `status`, `createdBy`, `admin_id`) VALUES
-(5, '1234567890', 'student1', 'Lan Hao Zhe', '2018-06-04', 'K1', 'Yanti', 'yanti888@gmail.com', '0167955116', '24, Jalan Sutera, Taman Sutera, 81200 Johor Bahru, Johor', '2023-06-05', 1, 1, NULL, NULL),
-(7, 'T001', 'teacher123', 'Lan Xin Er', '2000-09-30', NULL, NULL, 'lanxiner@gmail.com', '0183633117', '70, Jalan Indah, Taman Bukit Indah, 81200, Johor Bahru, Johor', '2017-06-07', 2, 1, NULL, 1);
+(7, 'T001', 'teacher123', 'Lan Xin Er', '2000-09-30', NULL, NULL, 'lanxiner@gmail.com', '0183633117', '70, Jalan Indah, Taman Bukit Indah, 81200, Johor Bahru, Johor', '2017-06-07', 2, 1, NULL, 1),
+(8, '1221303344', 'student2', 'Tan Yu Xi', '2018-02-01', 'Pre-K', 'Cindy Lan', 'cindylan@gmail.com', '0167955112', '24, Jalan Rantai 2, Taman Kobena', '2023-06-11', 1, 1, NULL, NULL),
+(10, '1003461134', 'student3', 'Lim Wei Siang', '2017-01-01', 'Kindergarten', 'Lim Ah Kow', 'weisiangws0803@gmail.com', '0167577211', '24, Jalan Rantai 2,', '2023-06-22', 1, 1, NULL, NULL),
+(11, '1552465501', 'student4', 'Lewis Hamilton', '2019-04-04', 'Kindergarten', 'Toto', 'toto@gmail.com', '01678884251', 'USA', '2023-06-06', 1, 1, NULL, NULL),
+(12, '123456789', 'student1', 'Lan Hao Ze', '2019-06-16', 'Kindergarten', 'Yanti', 'yanti888@gmail.com', '0167955116', '24 JLN RANTAI 2 TMN KOBENA', '2023-06-11', 1, 1, NULL, NULL),
+(16, '1234568888', 'student9', 'Lim Wei Siang', '2023-06-11', 'Pre-K', 'JJ', 'weisiangws0803@gmail.com', '011115555', '24, Jalan Rantai 2,', '2023-06-13', 1, 2, 7, NULL),
+(27, 'T002', 'teacher2', 'LIM WEI SIANG', '2000-08-03', NULL, NULL, 'weisiang999@outlook.com', '0167955112', '24, Jalan Rantai 2, Taman Kobena', '2014-08-05', 2, 1, 1, NULL),
+(28, '12456415461', 'student11', 'Jayden Lim', '2017-09-09', NULL, NULL, 'lol1024king@gmail.com', '0167955112', '24 JLN RANTAI 2 TMN KOBENA', '2023-06-12', 1, 1, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -153,9 +160,7 @@ ALTER TABLE `contact`
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
-  ADD PRIMARY KEY (`course_id`),
-  ADD UNIQUE KEY `teacher_id` (`teacher_id`),
-  ADD UNIQUE KEY `admin_id` (`admin_id`);
+  ADD PRIMARY KEY (`course_id`);
 
 --
 -- Indexes for table `user`
@@ -185,24 +190,17 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `course`
---
-ALTER TABLE `course`
-  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`),
-  ADD CONSTRAINT `course_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
 
 --
 -- Constraints for table `user`
