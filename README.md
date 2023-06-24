@@ -23,3 +23,9 @@ For user, there are 2 roles:
 ...and 2 status:
 * 1 - active
 * 2 - inactive
+
+## Login as admin
+To login as admin, hop on to browser and go to `localhost/KidsPreschoolLearningSystem/login.php`
+
+* Username: `A001`
+* Password: admin
