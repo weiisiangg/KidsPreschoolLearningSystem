@@ -135,7 +135,6 @@ session_start();
                               <th>Course Video</th>
                               <th>Course Description</th>
                               <th>Education Stage</th>
-                              <th>Created by</th>
                               <th>Action</th>
                          </tr>
                          </thead>
@@ -153,7 +152,6 @@ session_start();
                                    echo "<td>"; echo $row["course_video"]; echo"</td>";
                                    echo "<td>"; echo $row["course_description"]; echo"</td>";
                                    echo "<td>"; echo $row["education_stage"]; echo"</td>";
-                                   echo "<td>"; echo $row["teacher_id"]; echo"</td>";
                          ?>
                          <td><a href="editCourse.php?course_id=<?php echo $row["course_id"] ?>" style="color:black;"><button type="button">Edit</button></a></td>
                          <td><a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>" style="color:black;"><button type="button">View</button></a></td>
