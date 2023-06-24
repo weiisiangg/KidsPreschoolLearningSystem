@@ -96,7 +96,13 @@ session_start();
      </section>
 
      <!-- START -->
-     <section id="viewCourse">
+     <section id="editCourse">
+     <div class="container">
+               <div id="profiledetail" class="section">
+                    <div class="section-center">
+                         <div class="row">
+                          <h6><a href="manageCourse.php">< Back</a></h6>
+                              <h1 style="color:black; text-align:top; margin-top: -10px;">Edit Course</h1>
           <?php
                // The update POST message with update flag
                 if (isset($_POST) && isset($_GET["update"])) {
@@ -127,30 +133,36 @@ session_start();
           ?>
                     <!-- The course update form -->
                     <form action="editCourse.php?update=true&&course_id=<?php echo $course_id ?>" method="post">
-                    <div class="field">
-                        <label>
-                            The course name:
-                            <input type="text" name="course-name" id="course-name" value="<?php echo $course_name ?>">
-                        </label>
-                    </div>
+                    <table class= "table table-boardered table-hover">   
+                         <tr>
+                              <div class="field">
+                              <td><label>The course name:</label></td>
+                              <td><input type="text" size="75" name="course-name" id="course-name" value="<?php echo $course_name ?>"></td>
+                              </div>
+                         </tr>
 
-                    <div class="field">
-                        <label>
-                            The course video:
-                            <input type="text" name="course-video" id="course-video" value=<?php echo $course_video ?>>
-                        </label>
-                    </div>
-
-                    <div class="field">
-                        <label>
-                            The course description:
-                            <textarea name="course-description" cols="30" rows="10">
-                                <?php echo $course_description ?>
-                            </textarea>
-                        </label>
-                    </div>
-
-                    <button type="submit">Update</button>
+                         <tr>
+                              <div class="field">
+                              <td><label>The course video:</label></td>
+                              <td><input type="text" size="75" name="course-video" id="course-video" value=<?php echo $course_video ?>></td>
+                              </div>
+                         </tr>
+                         <tr>     
+                              <div class="field">
+                              <td><label>The course description:</label></td>
+                                   
+                                   <td><textarea name="course-description" cols="75" rows="10" style="resize:none;">
+                                   <?php echo $course_description ?></textarea></td>
+                              </textarea>
+                              
+                         </div>
+                         </tr>
+                    <tr>
+                         <td></td>
+                         <td><button type="submit" class="btn btn-primary">Update</button>
+                         </td>
+                    </tr>
+                </table>
                 </form>
           <?php
                 }
