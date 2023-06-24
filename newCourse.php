@@ -112,6 +112,8 @@ session_start();
                     $course_name = $_POST["course-name"];
                     $course_video = $_POST["course-video"];
                     $course_description = $_POST["course-description"];
+                    $teacher_id = $_SESSION['user_id'];
+                    $education_stage = $_POST["education_stage"];
 
                     // A random number.
                     $random_offset = 10;
@@ -119,7 +121,7 @@ session_start();
                     $course_id = mysqli_query($con, "SELECT COUNT(*) as amount FROM course;")->fetch_assoc()["amount"] + $random_offset;
                     
                     $query = "INSERT INTO course (course_id, course_name, course_video, course_description, education_stage, teacher_id, admin_id)
-                              VALUES ('$course_id', '$course_name', '$course_video', '$course_description', 'K1', NULL, NULL);";
+                              VALUES ('$course_id', '$course_name', '$course_video', '$course_description', '$education_stage', '$teacher_id', NULL);";
                     
                     if(mysqli_query($con, $query)){
                          echo "<script>alert('Course record updated successfully!')</script>";
@@ -151,6 +153,16 @@ session_start();
                     <td>
                     <textarea name="course-description" cols="110" rows="10" required placeholder="Enter your description here.." style="resize:none;"></textarea>
                     </td>
+               </tr>
+
+               <tr>
+                    <td style="font-weight:bold;">Education Stage:</td>
+                    <td>
+                    <select class="form-control" id="education_stage" name="education_stage">
+                                <option value="Pre-K">Pre-K</option>
+                                <option value="Kindergarten">Kindergarten</option>
+                    </select>                    
+               </td>
                </tr>
           </table>
 

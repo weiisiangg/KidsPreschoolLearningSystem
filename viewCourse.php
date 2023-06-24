@@ -12,10 +12,12 @@ session_start();
 
      $user_id='';
      $username = '';
+     $role = '';
 
      if(isset($_SESSION['loginID'])){
           $loginID = $_SESSION['loginID'] ;
           $user_id = $_SESSION['user_id'] ;
+          $role = $_SESSION['role'];
           echo $_SESSION['user_id'];
      }else{
           echo "Session not set"; 
@@ -70,24 +72,37 @@ session_start();
                <!--navbar-->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="student.php" class="smoothScroll">Home</a></li>
-                         <li><a href="viewprofile.php?profileid=<?php echo $user_id?>" class="smoothScroll">Profile</a></li>
-                         <li><a href="courseList.php" class="smoothScroll">Course</a></li>
+                         <?php if ($_SESSION['role'] == '1') : ?>
+                              <li><a href="student.php" class="smoothScroll">Home</a></li>
+                              <li><a href="viewprofile.php?profileid=<?php echo $user_id?>" class="smoothScroll">Profile</a></li>
+                              <li><a href="courseList.php" class="smoothScroll">Course</a></li>
+                         <?php else : ?>
+                              <li><a href="teacher.php" class="smoothScroll">Home</a></li>
+                              <li><a href="viewprofile.php?profileid=<?php echo $user_id?>" class="smoothScroll">Profile</a></li>
+                              <li><a href="manageStudent.php?profileid=<?php echo $user_id?>" class="smoothScroll">Manage Student</a></li>
+                              <li><a href="manageCourse.php?profileid=<?php echo $user_id?>" class="smoothScroll">Manage Course</a></li>
+                         <?php endif ?>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">   
                           
                          <li class="dropdown">   
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>           
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
                                    <?php if (isset($_SESSION['loginID'])) : ?>
                                    <b><?php echo $_SESSION['loginID']; ?></b>
                                    <?php endif ?>
                               </a> 
                               <ul class="dropdown-menu">
-                                   <li style="margin-top: 10px; margin-bottom: 20px; margin-left: 15px;">Hi, <?php echo $_SESSION['loginID'];?></li>   
+                                   <li style="margin-top: 10px; margin-bottom: 20px; margin-left: 15px;">Hi, <?php  echo $_SESSION['loginID'];?></li>         
                                    <li role="separator" class="divider"></li>
                                    <li><a href ="viewprofile.php?profileid=<?php echo $user_id?>">User Profile</a></li>
-                                   <li><a href="courseList">My course</a></li>
+                                   <?php if ($_SESSION['role'] == '1') : ?>
+                                             <li><a href="courseList.php">My course</a></li>
+                                   <?php else : ?>
+                                        <li><a href="manageStudent.php?profileid=<?php echo $user_id?>" class="smoothScroll">Manage Student</a></li>
+                                        <li><a href="manageCourse.php?profileid=<?php echo $user_id?>" class="smoothScroll">Manage Course</a></li>
+                                    <?php endif ?>
+                                   
                                    <li><a href="logout.php">Log Out</a></li>
                               </ul>
                     </ul>
