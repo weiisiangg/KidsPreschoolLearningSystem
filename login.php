@@ -116,7 +116,7 @@ session_start();
                 <h3>Login now</h3>
                     <input type="text" name="loginID" required placeholder="User ID">
                     <input type="password" name="password" required placeholder="Password">
-                    <input type="submit" name="login" value="register now" class="form-btn">
+                    <input type="submit" name="login" value="login now" class="form-btn">
                 </form>
             </div>
         </div>
