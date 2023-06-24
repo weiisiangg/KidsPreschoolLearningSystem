@@ -110,7 +110,7 @@ session_start();
                               while ($row = $results->fetch_assoc()) {
                          ?>
                          <div>
-                              <table class= "table table-boardered table-hover">
+                              <table class= "table table-boardered table-hover" style="table-layout: fixed;">
                                    <tr>     
                                    <td><?php echo $row["course_name"] ?></td>
                                    <td><a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a></td>
