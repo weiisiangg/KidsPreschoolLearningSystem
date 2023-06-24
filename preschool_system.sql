@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2023 at 02:34 AM
+-- Generation Time: Jun 25, 2023 at 12:37 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -59,24 +59,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`contact_id`, `name`, `email`, `subject`, `message`) VALUES
-(1, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'I love your course!'),
-(2, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'I like your content!'),
-(15, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'loveeee'),
-(18, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'loveeee'),
-(20, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'lovee'),
-(22, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'lovee'),
-(24, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'loveee'),
-(26, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'loveee'),
-(28, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'loveee'),
-(30, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', 'love'),
-(40, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', '123'),
-(41, 'Lim Wei Siang test', 'weisiangws0803@gmail.com', 'love', '123test'),
-(42, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'test without preventdefault', 'test'),
-(43, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', '123'),
-(44, 'Lim Wei Siang', 'weisiangws0803@gmail.com', '123', '1123'),
-(45, 'Lim Wei Siang', 'weisiangws0803@gmail.com', '123', '123'),
-(50, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', '123'),
-(55, 'Lim Wei Siang', 'weisiangws0803@gmail.com', 'love', '123');
+(1, 'Lizz Chloe', 'chloelizz@gmail.com', 'Request More Information', 'I\'m interested about your course for kids! Please kindly contact me to let me know more information about the course.'),
+(2, 'JC', 'jcjc1221@gmail,com', 'Special Website', 'Very special website for preschool kids! I LOVE IT!!!');
 
 -- --------------------------------------------------------
 
@@ -99,8 +83,10 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_name`, `course_video`, `course_description`, `education_stage`, `teacher_id`, `admin_id`) VALUES
-(1, 'Baby Shark', 'x5Udg77RMeY', 'baby shark', 'K1', NULL, NULL),
-(6, 'ABC', 'ezmsrB59mj8', 'Learn ABC with Song', 'Pre-K', NULL, 1);
+(1, 'The ABC Song', 'ezmsrB59mj8', 'ABC Song | Learn ABC alphabet for Kids.\r\n\r\nA B C D E F G\r\nH I J K L M N\r\nO P Q R S T U\r\nV W X Y Z', 'Kindergarten', NULL, 1),
+(2, '123 Song', 'o0IsBUaoTrQ', '123 Song for Kids | Learn Counting & Numbers\r\n\r\nCounting 123 with this 123 song.', 'Kindergarten', NULL, 1),
+(3, 'Wheels on the Bus', 'e_04ZrNroTo', 'Bounce along in the bus all over town with this favorite nursery rhyme!', 'Pre-K', NULL, 1),
+(4, 'One Little Finger', '0pAZq7VHA2I', 'Super simple songs for Pre-k kids!', 'Pre-K', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -131,14 +117,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `loginID`, `password`, `name`, `dob`, `education_stage`, `parentName`, `email`, `contact`, `address`, `startDate`, `role`, `status`, `createdBy`, `admin_id`) VALUES
-(7, 'T001', 'teacher123', 'Lan Xin Er', '2000-09-30', NULL, NULL, 'lanxiner@gmail.com', '0183633117', '70, Jalan Indah, Taman Bukit Indah, 81200, Johor Bahru, Johor', '2017-06-07', 2, 1, NULL, 1),
-(8, '1221303344', 'student2', 'Tan Yu Xi', '2018-02-01', 'Pre-K', 'Cindy Lan', 'cindylan@gmail.com', '0167955112', '24, Jalan Rantai 2, Taman Kobena', '2023-06-11', 1, 1, NULL, NULL),
-(10, '1003461134', 'student3', 'Lim Wei Siang', '2017-01-01', 'Kindergarten', 'Lim Ah Kow', 'weisiangws0803@gmail.com', '0167577211', '24, Jalan Rantai 2,', '2023-06-22', 1, 1, NULL, NULL),
-(11, '1552465501', 'student4', 'Lewis Hamilton', '2019-04-04', 'Kindergarten', 'Toto', 'toto@gmail.com', '01678884251', 'USA', '2023-06-06', 1, 1, NULL, NULL),
-(12, '123456789', 'student1', 'Lan Hao Ze', '2019-06-16', 'Kindergarten', 'Yanti', 'yanti888@gmail.com', '0167955116', '24 JLN RANTAI 2 TMN KOBENA', '2023-06-11', 1, 1, NULL, NULL),
-(16, '1234568888', 'student9', 'Lim Wei Siang', '2023-06-11', 'Pre-K', 'JJ', 'weisiangws0803@gmail.com', '011115555', '24, Jalan Rantai 2,', '2023-06-13', 1, 2, 7, NULL),
-(27, 'T002', 'teacher2', 'LIM WEI SIANG', '2000-08-03', NULL, NULL, 'weisiang999@outlook.com', '0167955112', '24, Jalan Rantai 2, Taman Kobena', '2014-08-05', 2, 1, 1, NULL),
-(28, '12456415461', 'student11', 'Jayden Lim', '2017-09-09', NULL, NULL, 'lol1024king@gmail.com', '0167955112', '24 JLN RANTAI 2 TMN KOBENA', '2023-06-12', 1, 1, 1, NULL);
+(1, 'T001', 'teacher123', 'Lim Wei Siang', '2000-08-03', NULL, NULL, 'weisiang999@outlook.com', '0167577211', '24, Jalan Rantai 2, Taman Kobena', '2018-01-01', 2, 1, 1, NULL),
+(2, 'T002', 'teacher234', 'Jayden Lim', '2000-10-24', NULL, NULL, 'jaydenlim888@gmail.com', '0183435118', 'C-19-3A, The Heights Residence, 75450, Melaka', '2020-01-01', 2, 1, 1, NULL),
+(3, 'S001', 'student123', 'Lan Hao Zhe', '2018-06-16', 'Kindergarten', 'Eugene Ng', 'eugene524@gmail.com', '0183435118', '30, Jalan Sutera, Taman Sutera, 81200, Johor Bahru', '2023-06-05', 1, 1, 1, NULL),
+(4, 'S002', 'student456', 'Tan Yu Xi', '2019-05-20', 'Pre-K', 'Cindy Lan', 'cindylan@gmail.com', '0147825161', '70, Jalan Indah, Taman Kobena, 81200, Johor', '2023-06-05', 1, 1, 1, NULL),
+(5, 'S003', 'student888', 'Joan Lim', '2016-08-24', 'Kindergarten', 'JJ Lim', 'jjlim@gmail.com', '0122419859', '90, Jalan Ampang, Ampang, 68000, Kuala Lumpur', '2021-01-04', 1, 2, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -184,19 +167,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
