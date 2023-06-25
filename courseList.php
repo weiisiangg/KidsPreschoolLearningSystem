@@ -16,6 +16,7 @@ session_start();
      if(isset($_SESSION['loginID'])){
           $loginID = $_SESSION['loginID'] ;
           $user_id = $_SESSION['user_id'] ;
+          $edustage = $_SESSION['education_stage'];
           echo $_SESSION['user_id'];
      }else{
           echo "Session not set"; 
@@ -103,8 +104,9 @@ session_start();
                <div class="section-center">
                     <div class="row">
                          <h1 style="color:black; text-align:top; margin-top: -10px;">My Course</h1>
+                         <?php if ($_SESSION['education_stage'] == 'Kindergarten') :?>
                          <?php
-                              $query = "SELECT * FROM course";
+                              $query = "SELECT * FROM course where education_stage = 'Kindergarten'";
                               $results = mysqli_query($con, $query);
 
                               while ($row = $results->fetch_assoc()) {
@@ -120,6 +122,26 @@ session_start();
                          <?php
                               }
                          ?>
+                         <?php else :?>
+                         <?php
+                              $query = "SELECT * FROM course where education_stage = 'Pre-K'";
+                              $results = mysqli_query($con, $query);
+
+                              while ($row = $results->fetch_assoc()) {
+                         ?>
+                         <div>
+                              <table class= "table table-boardered table-hover" style="table-layout: fixed;">
+                                   <tr>     
+                                   <td><?php echo $row["course_name"] ?></td>
+                                   <td><a href="viewCourse.php?course_id=<?php echo $row["course_id"] ?>">View</a></td>
+                                   </tr>     
+                              </table>
+                         </div>
+                         <?php
+                              }
+                         ?>
+
+                         <?php endif?>
                </div>
                </div>
           </div>
