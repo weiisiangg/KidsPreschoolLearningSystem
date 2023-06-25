@@ -20,6 +20,7 @@ session_start();
                     $_SESSION['user_id']= $row['user_id'];
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['role'] = $row['role'];
+                    $_SESSION['education_stage'] = $row['education_stage'];
                     $_SESSION['success'] = "You are now logged in";
                 }
                 if ($_SESSION['role'] == '1'){

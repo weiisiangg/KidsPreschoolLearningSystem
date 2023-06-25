@@ -12,10 +12,12 @@ session_start();
 
      $user_id='';
      $username = '';
+     $edustage = '';
 
      if(isset($_SESSION['loginID'])){
           $loginID = $_SESSION['loginID'] ;
           $user_id = $_SESSION['user_id'] ;
+          $edustage = $_SESSION['education_stage'];
           echo $_SESSION['user_id'];
      }else{
           echo "Session not set"; 
