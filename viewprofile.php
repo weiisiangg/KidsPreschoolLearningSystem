@@ -30,6 +30,7 @@ session_start();
      $password = '';
      $name = '';
      $dob = '';
+     $parentName = '';
      $email = '';
      $contact ='';
      $address = '';
@@ -60,6 +61,7 @@ session_start();
           $password=$_POST['password'];
           $name=$_POST['name'];
           $dob = $_POST['dob'];
+          $parentName = $_POST['parentName'];
           $email = $_POST['email'];
           $contact = $_POST['contact'];
           $address = $_POST['address'];
@@ -67,7 +69,7 @@ session_start();
      
           $id = $user_id;
 
-          $sql = "UPDATE user SET loginID='$loginID', password='$password', name='$name', dob='$dob', email='$email', contact='$contact', address='$address', startDate='$startDate' WHERE user_id='$id'";
+          $sql = "UPDATE user SET loginID='$loginID', password='$password', name='$name', dob='$dob', parentName='$parentName', email='$email', contact='$contact', address='$address', startDate='$startDate' WHERE user_id='$id'";
 
      if (mysqli_query($conn, $sql)) {
           echo "<script>alert('Profile record updated successfully!')</script>";
@@ -170,9 +172,9 @@ session_start();
                     <div class="section-center">
                          <div class="row">
                               <h1 style="color:black; text-align:top; margin-top: -10px;">Profile detail</h1>
-                              <form action="" method="post" autocomplete="on" id="updateForm">
+                              <form action="viewprofile.php" method="post" autocomplete="no" id="updateForm">
                               <?php
-                                   $cid=$_GET['profileid'];
+                                   $cid=$_SESSION['user_id'];
                                    $query = "SELECT * FROM user WHERE user_id='$cid'";
 
                                    $result = mysqli_query($con,$query);
@@ -186,12 +188,21 @@ session_start();
                                              <?php echo $user_id;?>
                                          </td>
                                    </tr>
-                                   <tr>
-                                         <td style="font-weight:bold;">Login ID</td>
+                                   <?php if ($_SESSION['role'] == '1') : ?>
+                                   <tr hidden>
+                                         <td style="font-weight:bold;">Parent Name</td>
                                          <td>
                                              <input class="form-control" type="text" name="loginID" required value="<?php echo $row['loginID']; ?>">
                                          </td>
                                    </tr>
+                                   <?php else : ?>
+                                   <tr>
+                                        <td style="font-weight:bold;">Parent Name</td>
+                                        <td>
+                                             <input class="form-control" type="text" name="loginID" required value="<?php echo $row['loginID']; ?>">
+                                        </td>
+                                   </tr>  
+                                   <?php endif ?>
                                    <tr>
                                          <td style="font-weight:bold;">Password</td>
                                          <td>
@@ -211,6 +222,21 @@ session_start();
                                              <input class="form-control" type="date" name="dob" required value="<?php  echo  $row['dob']; ?>">
                                          </td>
                                    </tr>
+                                   <?php if ($_SESSION['role'] == '2') : ?>
+                                   <tr hidden>
+                                         <td style="font-weight:bold;">Login ID</td>
+                                         <td>
+                                             <input class="form-control" type="text" name="parentName" required value="<?php echo $row['parentName']; ?>">
+                                         </td>
+                                   </tr>
+                                   <?php else : ?>
+                                   <tr>
+                                        <td style="font-weight:bold;">Login ID</td>
+                                        <td>
+                                             <input class="form-control" type="text" name="parentName" required value="<?php echo $row['parentName']; ?>">
+                                        </td>
+                                   </tr>  
+                                   <?php endif ?>
                                    <tr>
                                          <td style="font-weight:bold;">Email</td>
                                          <td>
