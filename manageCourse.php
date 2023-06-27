@@ -24,17 +24,6 @@ session_start();
           echo "Session not set"; 
      }
 
-     // TODO: Remove? (Already defined inside conn.php)
-     // function connect(){
-     //      $con = mysqli_connect("localhost", "root", "", "preschool_system");
-     //      if(mysqli_connect_errno()){
-     //          echo "Connection Fail" . mysqli_connect_error();
-     //      }
-     //      return $con;
-     //  }
-      
-     //  $link = connect();
-
      // if there is a post message (with delete flag on)
      if (isset($_REQUEST["delete"])) {
           $course_id = $_REQUEST["course_id"];
