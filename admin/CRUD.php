@@ -176,8 +176,12 @@ if(isset($_GET['delete']))
                       echo "<td>"; echo $row["createdBy"]; echo"</td>";
                  ?>
                 <td>
+                <?php if ($row["status"] == 1) : ?>
                     <a href="viewuser.php?viewid=<?php echo $row["user_id"]?>"class="btn btn-info">View</a>
                     <a href="CRUD.php?delete=<?php echo $row["user_id"]?>"class="btn btn-danger">delete</a>
+                <?php else : ?>
+                    <a href="viewuser.php?viewid=<?php echo $row["user_id"]?>"class="btn btn-info">View</a>
+                <?php endif ?>
                 </td>
                 <?php }?>
             </tr>
