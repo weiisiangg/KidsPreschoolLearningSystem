@@ -190,14 +190,14 @@ session_start();
                                    </tr>
                                    <?php if ($_SESSION['role'] == '1') : ?>
                                    <tr hidden>
-                                         <td style="font-weight:bold;">Parent Name</td>
+                                         <td style="font-weight:bold;">Login ID</td>
                                          <td>
                                              <input class="form-control" type="text" name="loginID" required value="<?php echo $row['loginID']; ?>">
                                          </td>
                                    </tr>
                                    <?php else : ?>
                                    <tr>
-                                        <td style="font-weight:bold;">Parent Name</td>
+                                        <td style="font-weight:bold;">Login ID</td>
                                         <td>
                                              <input class="form-control" type="text" name="loginID" required value="<?php echo $row['loginID']; ?>">
                                         </td>
@@ -224,14 +224,14 @@ session_start();
                                    </tr>
                                    <?php if ($_SESSION['role'] == '2') : ?>
                                    <tr hidden>
-                                         <td style="font-weight:bold;">Login ID</td>
+                                         <td style="font-weight:bold;">Parent Name</td>
                                          <td>
                                              <input class="form-control" type="text" name="parentName" required value="<?php echo $row['parentName']; ?>">
                                          </td>
                                    </tr>
                                    <?php else : ?>
                                    <tr>
-                                        <td style="font-weight:bold;">Login ID</td>
+                                        <td style="font-weight:bold;">Parent Name</td>
                                         <td>
                                              <input class="form-control" type="text" name="parentName" required value="<?php echo $row['parentName']; ?>">
                                         </td>
